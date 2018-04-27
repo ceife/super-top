@@ -2,6 +2,12 @@
 
 > Projeto STOP utilizando Vuejs da Ftec
 
+``` bash
+http://172.29.80.15:8080/StopWeb/getPartida
+http://172.29.80.15:8080/StopWeb/newJogador?nome=
+http://172.29.80.15:8080/StopWeb/getConfiguracoes
+```
+
 ## Build Setup
 
 ``` bash

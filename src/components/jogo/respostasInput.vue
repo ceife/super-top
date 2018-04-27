@@ -6,7 +6,7 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input" type="email" :name="categoria" :disable='disponivel'>
+          <input class="input" type="email" :name="categoria" :disabled='disponivel'>
         </p>
       </div>
     </div>

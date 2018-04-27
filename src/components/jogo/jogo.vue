@@ -3,7 +3,7 @@
     <div class="columns is-mobile">
     <sidebarFrame>
     <ul>
-      <li v-for='jogador in dados.rodadas1[0].jogadors'><sidebarBox :jogador='jogador'></sidebarBox></li>
+      <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
     </ul>
     </sidebarFrame>
     <jogo>
@@ -35,7 +35,7 @@ export default {
       jogadores: [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}],
       categorias: ['cigarro','carro','fruta'],
 
-disponivel:true,
+      disponivel:true,
 
 
 
