@@ -11,9 +11,7 @@
           <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
         </ul>
       </sidebarFrame>
-      <pre>{{categorias}}</pre>
     </div>
-
   </div>
 </template>
 
