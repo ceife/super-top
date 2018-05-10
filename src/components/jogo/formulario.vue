@@ -30,7 +30,6 @@ export default {
   props: ['categorias','indisponivel'],
   data () {
     return {
-      'nome': 'aaaaaaa'
     }
   },
   methods: {

@@ -2,7 +2,7 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario :categorias='categorias' :indisponivel='indisponivel' v-model='categorias'>
+      <formulario :categorias='categorias' :indisponivel='indisponivel'>
       </formulario>
       <sidebarLetra :letra='letra'>
       </sidebarLetra>
@@ -22,7 +22,6 @@ import sidebarFrame from '../shared/sidebar/sidebarFrame.vue';
 import sidebarBox from '../shared/sidebar/sidebarBox.vue';
 import formulario from './formulario.vue';
 import sidebarLetra from './sidebarLetra.vue';
-//import respostasInput from './respostasInput.vue';
 export default {
 
   components: {
@@ -30,18 +29,19 @@ export default {
     'formulario': formulario,
     'sidebarBox': sidebarBox,
     'sidebarLetra': sidebarLetra
-    //'respostasInput': respostasInput
   },
 
   name: 'app',
   data () {
     return {
-      //dados mockados
+      /* 2-way-db
+      * https://jsfiddle.net/ErickPetru/vbs2yynj/1/?utm_source=website&utm_medium=embed&utm_campaign=vbs2yynj
+      * https://jsfiddle.net/Herteby/qt0aqa9g/
+      */
+
       jogadores: '',
       categorias: '',
       letra: '',
-
-
 
       indisponivel:false,
 
@@ -55,27 +55,27 @@ export default {
     this.categorias = [
       {
         'nome':'nome',
-        'resposta':'testenome'
+        'resposta':''
       },
       {
         'nome':'TV',
-        'resposta':'tvnome'
+        'resposta':''
       },
       {
         'nome':'animal',
-        'resposta':'animalnome'
+        'resposta':''
       },
       {
         'nome':'marca',
-        'resposta':'marcanome'
+        'resposta':''
       },
       {
         'nome':'cor',
-        'resposta':'cornome'
+        'resposta':''
       },
       {
         'nome':'fruta',
-        'resposta':'frutanome'
+        'resposta':''
       }
     ];
     this.letra = 'B';
