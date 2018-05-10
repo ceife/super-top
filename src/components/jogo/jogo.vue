@@ -1,10 +1,9 @@
 <template>
   <div class='container'>
     <div class="columns is-multiline is-mobile">
-      <jogo>
-        <respostasInput v-for='categoria in categorias' :categoria='categoria' :indisponivel='indisponivel' :teste='teste'>
-        </respostasInput>
-      </jogo>
+
+      <formulario :categorias='categorias' :indisponivel='indisponivel' v-model='categorias'>
+      </formulario>
       <sidebarLetra :letra='letra'>
       </sidebarLetra>
       <sidebarFrame>
@@ -12,49 +11,81 @@
           <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
         </ul>
       </sidebarFrame>
+      <pre>{{categorias}}</pre>
     </div>
+
   </div>
 </template>
 
 <script>
 import sidebarFrame from '../shared/sidebar/sidebarFrame.vue';
 import sidebarBox from '../shared/sidebar/sidebarBox.vue';
-import jogo from './respostas.vue';
+import formulario from './formulario.vue';
 import sidebarLetra from './sidebarLetra.vue';
-import respostasInput from './respostasInput.vue';
+//import respostasInput from './respostasInput.vue';
 export default {
 
   components: {
     'sidebarFrame': sidebarFrame,
-    'jogo': jogo,
+    'formulario': formulario,
     'sidebarBox': sidebarBox,
-    'sidebarLetra': sidebarLetra,
-    'respostasInput': respostasInput
+    'sidebarLetra': sidebarLetra
+    //'respostasInput': respostasInput
   },
 
   name: 'app',
   data () {
     return {
       //dados mockados
-      jogadores: [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}],
-      categorias: ['nome','TV','animal','marca','cor','fruta'],
-      letra: 'B',
+      jogadores: '',
+      categorias: '',
+      letra: '',
+
+
+
       indisponivel:false,
-
-      teste: 'aaaaaaaaaaaaaa',
-
-
 
       dados: []
       //jogador in dados.rodadas1[0].jogadors
     }
   },
   created() {
-
+    //dados mockados
+    this.jogadores = [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}];
+    this.categorias = [
+      {
+        'nome':'nome',
+        'resposta':'testenome'
+      },
+      {
+        'nome':'TV',
+        'resposta':'tvnome'
+      },
+      {
+        'nome':'animal',
+        'resposta':'animalnome'
+      },
+      {
+        'nome':'marca',
+        'resposta':'marcanome'
+      },
+      {
+        'nome':'cor',
+        'resposta':'cornome'
+      },
+      {
+        'nome':'fruta',
+        'resposta':'frutanome'
+      }
+    ];
+    this.letra = 'B';
+    //conexão com a sala
+    /*
     let promise = this.$http.get('https://raw.githubusercontent.com/felipedacs/super-top/master/data3.json');
     promise
     .then(res => res.json())
     .then(dados => this.dados = dados);
+    */
   },
   computed:{
 
