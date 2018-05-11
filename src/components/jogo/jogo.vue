@@ -2,8 +2,9 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario :categorias='categorias' :indisponivel='indisponivel'>
+      <formulario :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
       </formulario>
+
       <sidebarLetra :letra='letra'>
       </sidebarLetra>
       <sidebarFrame>
@@ -11,6 +12,7 @@
           <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
         </ul>
       </sidebarFrame>
+      <!-- <pre>{{categorias}}</pre> -->
     </div>
   </div>
 </template>
