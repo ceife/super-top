@@ -1,10 +1,9 @@
 <template>
   <div class='container'>
     <div class="columns is-multiline is-mobile">
-      <jogo>
-        <respostasInput v-for='categoria in categorias' :categoria='categoria' :indisponivel='indisponivel' :teste='teste'>
-        </respostasInput>
-      </jogo>
+
+      <formulario :categorias='categorias' :indisponivel='indisponivel'>
+      </formulario>
       <sidebarLetra :letra='letra'>
       </sidebarLetra>
       <sidebarFrame>
@@ -19,42 +18,72 @@
 <script>
 import sidebarFrame from '../shared/sidebar/sidebarFrame.vue';
 import sidebarBox from '../shared/sidebar/sidebarBox.vue';
-import jogo from './respostas.vue';
+import formulario from './formulario.vue';
 import sidebarLetra from './sidebarLetra.vue';
-import respostasInput from './respostasInput.vue';
 export default {
 
   components: {
     'sidebarFrame': sidebarFrame,
-    'jogo': jogo,
+    'formulario': formulario,
     'sidebarBox': sidebarBox,
-    'sidebarLetra': sidebarLetra,
-    'respostasInput': respostasInput
+    'sidebarLetra': sidebarLetra
   },
 
   name: 'app',
   data () {
     return {
-      //dados mockados
-      jogadores: [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}],
-      categorias: ['nome','TV','animal','marca','cor','fruta'],
-      letra: 'B',
+      /* 2-way-db
+      * https://jsfiddle.net/ErickPetru/vbs2yynj/1/?utm_source=website&utm_medium=embed&utm_campaign=vbs2yynj
+      * https://jsfiddle.net/Herteby/qt0aqa9g/
+      */
+
+      jogadores: '',
+      categorias: '',
+      letra: '',
+
       indisponivel:false,
-
-      teste: 'aaaaaaaaaaaaaa',
-
-
 
       dados: []
       //jogador in dados.rodadas1[0].jogadors
     }
   },
   created() {
-
+    //dados mockados
+    this.jogadores = [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}];
+    this.categorias = [
+      {
+        'nome':'nome',
+        'resposta':''
+      },
+      {
+        'nome':'TV',
+        'resposta':''
+      },
+      {
+        'nome':'animal',
+        'resposta':''
+      },
+      {
+        'nome':'marca',
+        'resposta':''
+      },
+      {
+        'nome':'cor',
+        'resposta':''
+      },
+      {
+        'nome':'fruta',
+        'resposta':''
+      }
+    ];
+    this.letra = 'B';
+    //conexão com a sala
+    /*
     let promise = this.$http.get('https://raw.githubusercontent.com/felipedacs/super-top/master/data3.json');
     promise
     .then(res => res.json())
     .then(dados => this.dados = dados);
+    */
   },
   computed:{
 
