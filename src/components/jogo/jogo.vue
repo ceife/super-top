@@ -12,7 +12,7 @@
           <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
         </ul>
       </sidebarFrame>
-      <!-- <pre>{{categorias}}</pre> -->
+      <!--<pre>{{categorias}}</pre>-->
     </div>
   </div>
 </template>
@@ -55,27 +55,27 @@ export default {
     this.categorias = [
       {
         'nome':'nome',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'TV',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'animal',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'marca',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'cor',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'fruta',
-        'resposta':''
+        'resposta':null
       }
     ];
     this.letra = 'B';

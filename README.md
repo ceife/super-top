@@ -3,9 +3,21 @@
 > Projeto STOP utilizando Vuejs da Ftec
 
 ``` bash
+// site sor
+http://149.56.133.212:8081/StopWeb/getPartida
+
 http://172.29.80.15:8080/StopWeb/getPartida
 http://172.29.80.15:8080/StopWeb/newJogador?nome=
 http://172.29.80.15:8080/StopWeb/getConfiguracoes
+```
+
+# Padrão
+```
+{
+  funcao:
+  Valor:
+}
+
 ```
 
 ## Build Setup
@@ -20,5 +32,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).

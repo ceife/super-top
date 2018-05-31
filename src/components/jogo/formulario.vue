@@ -65,6 +65,7 @@ export default {
         this.categorias[i].resposta = resposta;
       } else {
         this.$refs.input[i].className = 'input is-danger';
+        this.categorias[i].resposta = null;
       }
     }
   }
