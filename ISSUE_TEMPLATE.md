@@ -4,7 +4,8 @@
 
 <!-- final do texto -->
 **********
-Antes de enviar a issue escolha em "projects" o item "stop-mvp" ----->
+Antes de enviar a issue escolha em "projects" o item "stop mvp" ----->
+<br>
 Antes de enviar a issue marque as labels correspondentes ----->
 
 - Coloque a label correta:
