@@ -34,6 +34,17 @@ export default {
   name: 'app',
   data () {
     return {
+      padrao:{
+        "funcao": "putRespostas",
+        "data": [
+          "categoria1",
+          "categoria2",
+          "categoria3",
+          "categoria4",
+          "categoria5"
+        ]
+      },
+
       /* 2-way-db
       * https://jsfiddle.net/ErickPetru/vbs2yynj/1/?utm_source=website&utm_medium=embed&utm_campaign=vbs2yynj
       * https://jsfiddle.net/Herteby/qt0aqa9g/
