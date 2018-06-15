@@ -2,8 +2,9 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario :categorias='categorias' :indisponivel='indisponivel'>
+      <formulario :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
       </formulario>
+
       <sidebarLetra :letra='letra'>
       </sidebarLetra>
       <sidebarFrame>
@@ -11,6 +12,7 @@
           <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
         </ul>
       </sidebarFrame>
+      <!--<pre>{{categorias}}</pre>-->
     </div>
   </div>
 </template>
@@ -32,6 +34,17 @@ export default {
   name: 'app',
   data () {
     return {
+      padrao:{
+        "funcao": "putRespostas",
+        "data": [
+          "categoria1",
+          "categoria2",
+          "categoria3",
+          "categoria4",
+          "categoria5"
+        ]
+      },
+
       /* 2-way-db
       * https://jsfiddle.net/ErickPetru/vbs2yynj/1/?utm_source=website&utm_medium=embed&utm_campaign=vbs2yynj
       * https://jsfiddle.net/Herteby/qt0aqa9g/
@@ -53,27 +66,27 @@ export default {
     this.categorias = [
       {
         'nome':'nome',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'TV',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'animal',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'marca',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'cor',
-        'resposta':''
+        'resposta':null
       },
       {
         'nome':'fruta',
-        'resposta':''
+        'resposta':null
       }
     ];
     this.letra = 'B';

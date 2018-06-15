@@ -16,7 +16,8 @@
                     <input class="input is-large" type="text" placeholder="Nome/Nickname" v-model="nome" autofocus="">
                   </div>
                 </div>
-                <button class="button is-block is-info is-large is-fullwidth" @click="envia()">Entrar</button>
+                <button class="button is-block is-info is-large is-fullwidth" @click="testa()">Entrar</button>
+                <button class="button is-block is-info is-large is-fullwidth" @click="joga()">joga</button>
               </form>
             </div>
           </div>
@@ -31,7 +32,8 @@ export default {
   name: 'app',
   data () {
     return {
-      'nome': ''
+      'nome': '',
+      'websocket': null
     }
   },
   methods: {
@@ -48,7 +50,38 @@ export default {
         alert("fail")
         return console.log(err);
       });
-    }
+    },
+
+    testa(){
+      var rota = this;
+      this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + this.nome);
+      this.websocket.onmessage = function(msg){
+        // console.log(msg.data);
+
+        console.log(JSON.parse(msg.data));
+
+        let resposta = JSON.parse(msg.data);
+        if(resposta.funcao == "newRodada"){
+          rota.$router.push('/jogo');
+          console.log('opa');
+        }
+
+      };
+
+    },
+    joga(){
+      this.websocket.send(JSON.stringify({
+        funcao:"newRodada"
+      }));
+    },
+
+
+
+
+
+
+
+
   }
 }
 </script>
