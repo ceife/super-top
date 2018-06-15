@@ -16,7 +16,7 @@
                     <input class="input is-large" type="text" placeholder="Nome/Nickname" v-model="nome" autofocus="">
                   </div>
                 </div>
-                <button class="button is-block is-info is-large is-fullwidth" @click="testa()">Entrar</button>
+                <button class="button is-block is-info is-large is-fullwidth" @click="login()">Entrar</button>
                 <button class="button is-block is-info is-large is-fullwidth" @click="joga()">joga</button>
               </form>
             </div>
@@ -52,7 +52,7 @@ export default {
       });
     },
 
-    testa(){
+    login(){
       var rota = this;
       this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + this.nome);
       this.websocket.onmessage = function(msg){
@@ -62,7 +62,8 @@ export default {
 
         let resposta = JSON.parse(msg.data);
         if(resposta.funcao == "newRodada"){
-          rota.$router.push('/jogo');
+          rota.$router.push('/jogo/felipe');
+          //rota.$router.push({ component: 'jogo'});
           console.log('opa');
         }
 
@@ -82,6 +83,9 @@ export default {
 
 
 
+  },
+  created() {
+    console.log('login criado');
   }
 }
 </script>

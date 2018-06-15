@@ -9,7 +9,7 @@
 
           <div class="columns is-mobile">
 
-            <cardvoto v-for='resposta in respostas' :resposta='resposta'></cardvoto>
+            <cardvoto v-for='(resposta, i) in respostas' :key='i' :resposta='resposta'></cardvoto>
 
           </div>
 
