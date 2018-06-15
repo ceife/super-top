@@ -48,6 +48,9 @@ export default {
     //     return console.log(err);
     //   });
     // },
+    envia(){
+      this.$emit('envia');
+    },
     tratarResposta(i) {
       // /\b[t]+/gi
       var regex = new RegExp('\\b['+this.letra+']+', 'gi');
