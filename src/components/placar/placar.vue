@@ -28,39 +28,36 @@
 <script>
 	import linha from './linha.vue';
 	export default {
-
+		props: ['websocket'],
 		components: {
 			'linha': linha
 		},
 		data () {
 			return {
-				
-
 				jogadores: [
 					{
-						'posicao': 1, 
-						'nome': "felipe", 
-						'pontos': 54, 
+						'posicao': 1,
+						'nome': "felipe",
+						'pontos': 54,
 					},
 					{
-						'posicao': 2, 
-						'nome': "felipe", 
-						'pontos': 54, 
+						'posicao': 2,
+						'nome': "felipe",
+						'pontos': 54,
 					},
 					{
-						'posicao': 3, 
-						'nome': "felipe", 
-						'pontos': 54, 
+						'posicao': 3,
+						'nome': "felipe",
+						'pontos': 54,
 					},
 					{
-						'posicao': 4, 
-						'nome': "felipe", 
-						'pontos': 54, 
+						'posicao': 4,
+						'nome': "felipe",
+						'pontos': 54,
 					}
 				]
 			}
 		}
-
 	}
 </script>
 

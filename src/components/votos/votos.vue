@@ -26,11 +26,11 @@
 <script>
 import cardvoto from '../votos/cardvoto.vue';
 export default {
+  props: ['websocket'],
   components: {
     'cardvoto': cardvoto
   },
-
-  name: 'app',
+  //name: 'app',
   data () {
     return {
       respostas:''

@@ -23,15 +23,14 @@ import sidebarBox from '../shared/sidebar/sidebarBox.vue';
 import formulario from './formulario.vue';
 import sidebarLetra from './sidebarLetra.vue';
 export default {
-
+  props: ['websocket'],
   components: {
     'sidebarFrame': sidebarFrame,
     'formulario': formulario,
     'sidebarBox': sidebarBox,
     'sidebarLetra': sidebarLetra
   },
-
-  name: 'app',
+  //name: 'app',
   data () {
     return {
       padrao:{
