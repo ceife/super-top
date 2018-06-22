@@ -2,7 +2,7 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario @envia='envia' :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
+      <formulario @responde='responde' :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
       </formulario>
 
       <sidebarLetra :letra='letra'>
@@ -104,12 +104,11 @@ export default {
 
   },
   methods:{
-    envia(){
+    responde(){
       console.log('enviado');
-      this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + this.nome);
       this.websocket.send(JSON.stringify({
         funcao:"putRespostas",
-        data:['um','dois']
+        valor:['um','dois','um','dois','um']
       }));
     }
 

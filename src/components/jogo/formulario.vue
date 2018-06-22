@@ -18,7 +18,7 @@
         </div>
         <!-- elemento -->
 
-        <button class="button is-block is-primary is-large is-fullwidth is-inverted" @click="envia()">Enviar</button>
+        <button class="button is-block is-primary is-large is-fullwidth is-inverted" @click="stop()">stop</button>
       </form>
     </div>
   </div>
@@ -48,8 +48,11 @@ export default {
     //     return console.log(err);
     //   });
     // },
-    envia(){
-      this.$emit('envia');
+    stop(){
+      this.$emit('stop');
+    },
+    responde(){
+      this.$emit('responde');
     },
     tratarResposta(i) {
       // /\b[t]+/gi
@@ -70,6 +73,7 @@ export default {
         this.$refs.input[i].className = 'input is-danger';
         this.categorias[i].resposta = null;
       }
+      this.responde();
     }
   }
 }

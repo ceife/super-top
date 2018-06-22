@@ -1,6 +1,6 @@
 <template>
   <div class="">
-      <router-view :websocket='websocket' @criaWS='criaWS'></router-view>
+    <router-view :websocket='websocket' @criaWS='criaWS'></router-view>
   </div>
 
 </template>
@@ -15,6 +15,7 @@ export default {
   },
   methods: {
     criaWS(nome){
+      let rota = this.$router;
       this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + nome);
       this.websocket.onmessage = function(msg){
         // console.log(msg.data);
@@ -24,6 +25,8 @@ export default {
         let resposta = JSON.parse(msg.data);
         if(resposta.funcao == "newRodada"){
           this.$router.push({ name: 'jogo'});
+        } else if (true) {
+          rota.push({ name: 'jogo'});
         }
       }
     },
