@@ -62,7 +62,18 @@
 </script>
 
 <style>
-	tbody tr:first-child td {
-		background-color: green;
+	tbody tr:nth-child(1), tr:nth-child(2), tr:nth-child(3) td {
+		color: white;
+		font-weight: bold;
+		text-shadow: 0px 1px 1px #4d4d4d;
+	}
+	tbody tr:nth-child(1) td {
+		background-color: gold;
+	}
+	tbody tr:nth-child(2) td {
+		background-color: silver;
+	}
+	tbody tr:nth-child(3) td {
+		background-color: #CD7F32;
 	}
 </style>
