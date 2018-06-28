@@ -6,7 +6,7 @@ import placar from './components/placar/placar.vue';
 export const routes = [
     { path: '*', redirect: '/' },
     { path: '/', component: login},
-    { path: '/jogo/:nome', component: jogo, name: 'jogo' },
+    { path: '/jogo', component: jogo, name: 'jogo' },
     { path: '/votos', component: votos },
     { path: '/placar', component: placar }
 ];

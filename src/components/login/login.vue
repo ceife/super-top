@@ -28,12 +28,11 @@
 </template>
 <script>
 export default {
-
-  name: 'app',
+  props:['websocket'],
+  //name: 'app',
   data () {
     return {
-      'nome': '',
-      'websocket': null
+      nome: ''
     }
   },
   methods: {
@@ -51,38 +50,14 @@ export default {
         return console.log(err);
       });
     },
-
     login(){
-      var rota = this;
-      this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + this.nome);
-      this.websocket.onmessage = function(msg){
-        // console.log(msg.data);
-
-        console.log(JSON.parse(msg.data));
-
-        let resposta = JSON.parse(msg.data);
-        if(resposta.funcao == "newRodada"){
-          rota.$router.push('/jogo/felipe');
-          //rota.$router.push({ component: 'jogo'});
-          console.log('opa');
-        }
-
-      };
-
+      this.$emit('criaWS' , this.nome);
     },
     joga(){
       this.websocket.send(JSON.stringify({
         funcao:"newRodada"
       }));
     },
-
-
-
-
-
-
-
-
   },
   created() {
     console.log('login criado');

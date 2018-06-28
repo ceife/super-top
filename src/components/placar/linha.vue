@@ -1,6 +1,6 @@
 <template>
-    <tr :class="{'is-selected': testaPrimeiroLugar}">
-      <th>{{jogador.posicao}}</th>
+    <tr class="primeira-linha">
+      <td>{{jogador.posicao}}</td>
       <td>{{jogador.nome}}</td>
       <td>{{jogador.pontos}}</td>
     </tr>
@@ -8,16 +8,7 @@
 
 <script>
   export default {
-    props:['jogador'],
-    computed:{
-      testaPrimeiroLugar(){
-        if (this.jogador.posicao === 1) {
-          return true;
-        } else {
-          return false;
-        }        
-      }
-    }
+    props:['jogador']
   }
 </script>
 

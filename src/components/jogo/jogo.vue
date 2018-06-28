@@ -2,39 +2,35 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario @envia='envia' :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
+      <formulario @responde='responde' :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
       </formulario>
 
-      <sidebarLetra :letra='letra'>
-      </sidebarLetra>
-      <sidebarFrame>
-        <ul>
-          <li v-for='jogador in jogadores'><sidebarBox :jogador='jogador'></sidebarBox></li>
-        </ul>
-      </sidebarFrame>
+      <letraBox :letra='letra'>
+      </letraBox>
+
+      <jogadoresList :jogadores='jogadores'>
+      </jogadoresList>
+
       <!--<pre>{{categorias}}</pre>-->
     </div>
   </div>
 </template>
 
 <script>
-import sidebarFrame from '../shared/sidebar/sidebarFrame.vue';
-import sidebarBox from '../shared/sidebar/sidebarBox.vue';
+import jogadoresList from './jogadoresList.vue';
 import formulario from './formulario.vue';
-import sidebarLetra from './sidebarLetra.vue';
+import letraBox from './letraBox.vue';
 export default {
-
+  props: ['websocket'],
   components: {
-    'sidebarFrame': sidebarFrame,
+    'jogadoresList': jogadoresList,
     'formulario': formulario,
-    'sidebarBox': sidebarBox,
-    'sidebarLetra': sidebarLetra
+    'letraBox': letraBox
   },
-
-  name: 'app',
+  //name: 'app',
   data () {
     return {
-      padrao:{
+      padraoResposta:{
         "funcao": "putRespostas",
         "data": [
           "categoria1",
@@ -62,7 +58,32 @@ export default {
   },
   created() {
     //dados mockados
-    this.jogadores = [{nome:'felipe',pontos:25},{nome:'jennifer',pontos:36}];
+    this.jogadores = [
+      {
+        nome:'felipe',
+        pontos:25
+      },
+      {
+        nome:'jennifer',
+        pontos:36
+      },
+      {
+        nome:'jennifer',
+        pontos:36
+      },
+      {
+        nome:'jennifer'
+        ,pontos:36
+      },
+      {
+        nome:'jennifer',
+        pontos:36
+      },
+      {
+        nome:'jennifer',
+        pontos:36
+      }
+    ];
     this.categorias = [
       {
         'nome':'nome',
@@ -105,37 +126,26 @@ export default {
 
   },
   methods:{
-    envia(){
+    responde(){
       console.log('enviado');
-      this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + this.nome);
       this.websocket.send(JSON.stringify({
         funcao:"putRespostas",
-        data:['um','dois']
+        valor:['um','dois','um','dois','um']
       }));
     }
-
   }
 }
 </script>
 
 <style scoped>
+
 .container{
   margin: 2%;
   max-width: none;
   width: auto;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-  min-width: 100%;
-}
 
-li {
-  display: inline-block;
-  margin: 0;
-  min-width: 100%;
-}
 
 a {
   color: #42b983;
