@@ -2,7 +2,7 @@
   <div class='container'>
     <div class="columns is-multiline is-mobile">
 
-      <formulario @responde='responde' :categorias='categorias' :indisponivel='indisponivel' :letra='letra'>
+      <formulario @responde='responde' :categorias='categorias' :indisponivel='indisponivel' :letra='letra' :jsonRespostas='jsonRespostas'>
       </formulario>
 
       <letraBox :letra='letra'>
@@ -30,16 +30,18 @@ export default {
   //name: 'app',
   data () {
     return {
-      padraoResposta:{
-        "funcao": "putRespostas",
-        "data": [
-          "categoria1",
-          "categoria2",
-          "categoria3",
-          "categoria4",
-          "categoria5"
-        ]
-      },
+      jsonRespostas:[null],
+
+      // padraoResposta:{
+      //   "funcao": "putRespostas",
+      //   "data": [
+      //     "categoria1",
+      //     "categoria2",
+      //     "categoria3",
+      //     "categoria4",
+      //     "categoria5"
+      //   ]
+      // },
 
       /* 2-way-db
       * https://jsfiddle.net/ErickPetru/vbs2yynj/1/?utm_source=website&utm_medium=embed&utm_campaign=vbs2yynj
@@ -56,6 +58,7 @@ export default {
       //jogador in dados.rodadas1[0].jogadors
     }
   },
+
   created() {
     //dados mockados
     this.jogadores = [
@@ -87,29 +90,30 @@ export default {
     this.categorias = [
       {
         'nome':'nome',
-        'resposta':null
+        'resposta':'null'
       },
       {
         'nome':'TV',
-        'resposta':null
+        'resposta':'null'
       },
       {
         'nome':'animal',
-        'resposta':null
+        'resposta':'null'
       },
       {
         'nome':'marca',
-        'resposta':null
+        'resposta':'null'
       },
       {
         'nome':'cor',
-        'resposta':null
+        'resposta':'null'
       },
       {
         'nome':'fruta',
-        'resposta':null
+        'resposta':'null'
       }
     ];
+    this.preencheJsonInicial(this.categorias);
     this.letra = 'B';
     //conexão com a sala
     /*
@@ -126,11 +130,16 @@ export default {
 
   },
   methods:{
+    preencheJsonInicial(categorias){
+      for (var i = 0; i < categorias.length; i++) {
+        this.jsonRespostas.push(null);
+      }
+    },
     responde(){
       console.log('enviado');
       this.websocket.send(JSON.stringify({
         funcao:"putRespostas",
-        valor:['um','dois','um','dois','um']
+        valor:this.jsonRespostas
       }));
     }
   }

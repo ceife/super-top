@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ['categorias','indisponivel','letra'],
+  props: ['categorias','indisponivel','letra','jsonRespostas'],
   data () {
     return {
       classe: 'is-danger',
@@ -67,8 +67,11 @@ export default {
         // att input co string formatada
         this.$refs.input[i].value = resposta;
 
-        // att resposta que vai ao json
+        //TEMPORARIO
         this.categorias[i].resposta = resposta;
+
+        // att resposta que vai ao json
+        this.jsonRespostas[i] = resposta;
       } else {
         this.$refs.input[i].className = 'input is-danger';
         this.categorias[i].resposta = null;
