@@ -4,9 +4,9 @@ import votos from './components/votos/votos.vue';
 import placar from './components/placar/placar.vue';
 
 export const routes = [
-    { path: '*', redirect: '/' },
-    { path: '/', component: login},
-    { path: '/jogo', component: jogo, name: 'jogo' },
-    { path: '/votos', component: votos },
-    { path: '/placar', component: placar }
+    { path: '*', redirect: '/super-top/' }, //redireciona url não especificada
+    { path: '/super-top/', component: login},
+    { path: '/super-top/jogo', component: jogo, name: 'jogo' },
+    { path: '/super-top/votos', component: votos },
+    { path: '/super-top/placar', component: placar }
 ];
