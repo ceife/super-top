@@ -1,8 +1,12 @@
 # stop
 
-> Projeto STOP utilizando Vuejs da Ftec
+> Projeto STOP utilizando Vuejs da Ftec.
 
-# Configurão
+* repo api: https://github.com/StopProject/stopProject
+* frontend do grupo: https://felipedacs.github.io/super-top
+* frontend de colegas: https://kevinveiga.github.io
+
+# Configuração
 ```
 npm install vue
 npm install vue-cli

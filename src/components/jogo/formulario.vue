@@ -6,7 +6,7 @@
         <!-- elemento -->
         <div class="field is-horizontal" v-for='(categoria, i) in categorias' :key='i'>
           <div class="field-label is-normal">
-            <label class="label">{{ categoria.nome }}</label>
+            <label class="label">{{ categoria }}</label>
           </div>
           <div class="field-body">
             <div class="field">
@@ -18,7 +18,7 @@
         </div>
         <!-- elemento -->
 
-        <button class="button is-block is-primary is-large is-fullwidth is-inverted" @click="stop()">stop</button>
+        <button class="button is-block is-primary is-large is-fullwidth is-inverted" @click="arregar()">arregar</button>
       </form>
     </div>
   </div>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props: ['categorias','indisponivel','letra'],
+  props: ['categorias','indisponivel','letra','jsonRespostas'],
   data () {
     return {
       classe: 'is-danger',
@@ -35,21 +35,8 @@ export default {
     }
   },
   methods: {
-    // envia() {
-    //   var obj = {nome: this.nome};
-    //   let nome = this.$http.get('http://172.29.80.15:8080/StopWeb/newJogador?nome=' + this.nome);
-    //   nome
-    //   .then(function(res) {
-    //     let resultado = res.json();
-    //     alert("sucess");
-    //     return resultado;
-    //   }).catch( function(err){
-    //     alert("fail")
-    //     return console.log(err);
-    //   });
-    // },
-    stop(){
-      this.$emit('stop');
+    arregar(){
+      this.$emit('arregar');
     },
     responde(){
       this.$emit('responde');
@@ -59,6 +46,7 @@ export default {
       var regex = new RegExp('\\b['+this.letra+']+', 'gi');
 
       if(regex.test(this.$refs.input[i].value)) {
+        // escolhe cor da margem
         this.$refs.input[i].className = 'input is-success';
 
         // Formata string
@@ -68,12 +56,16 @@ export default {
         this.$refs.input[i].value = resposta;
 
         // att resposta que vai ao json
-        this.categorias[i].resposta = resposta;
+        this.jsonRespostas[i] = resposta;
+
+        this.responde();
       } else {
+        // escolhe cor da margem
         this.$refs.input[i].className = 'input is-danger';
-        this.categorias[i].resposta = null;
+
+        // apaga o campo automaticamente
+        this.$refs.input[i].value = null;
       }
-      this.responde();
     }
   }
 }

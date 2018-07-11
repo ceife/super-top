@@ -17,7 +17,10 @@
                   </div>
                 </div>
                 <button class="button is-block is-info is-large is-fullwidth" @click="login()">Entrar</button>
-                <button class="button is-block is-info is-large is-fullwidth" @click="joga()">joga</button>
+
+                <!-- testa msgs do websocket, pode ser apagado -->
+                <!-- <button class="button is-block is-info is-large is-fullwidth" @click="config()">configurações</button>
+                <button class="button is-block is-info is-large is-fullwidth" @click="joga()">joga</button> -->
               </form>
             </div>
           </div>
@@ -29,38 +32,45 @@
 <script>
 export default {
   props:['websocket'],
-  //name: 'app',
   data () {
     return {
       nome: ''
     }
   },
   methods: {
-    envia() {
-      var obj = {nome: this.nome};
-      console.log(obj);
-      let nome = this.$http.get('http://172.29.80.15:8080/StopWeb/newJogador?nome=' + this.nome);
-      nome
-      .then(function(res) {
-        let resultado = res.json();
-        alert("sucess");
-        return resultado;
-      }).catch( function(err){
-        alert("fail")
-        return console.log(err);
-      });
-    },
     login(){
       this.$emit('criaWS' , this.nome);
     },
-    joga(){
-      this.websocket.send(JSON.stringify({
-        funcao:"newRodada"
-      }));
-    },
+
+    // testa msgs do websocket, pode ser apagado
+    // config(){
+    //   this.websocket.send(JSON.stringify({
+    //     funcao:"getConfiguracoes"
+    //   }));
+    // },
+    // joga(){
+    //   this.websocket.send(JSON.stringify({
+    //     funcao:"newRodada"
+    //   }));
+    // },
+
+    // antiga forma de envio com ajax, pode ser apagado
+    // envia() {
+    //   var obj = {nome: this.nome};
+    //   console.log(obj);
+    //   let nome = this.$http.get('http://172.29.80.15:8080/StopWeb/newJogador?nome=' + this.nome);
+    //   nome
+    //   .then(function(res) {
+    //     let resultado = res.json();
+    //     alert("sucess");
+    //     return resultado;
+    //   }).catch( function(err){
+    //     alert("fail")
+    //     return console.log(err);
+    //   });
+    // },
   },
   created() {
-    console.log('login criado');
   }
 }
 </script>

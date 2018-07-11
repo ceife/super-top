@@ -1,67 +1,57 @@
 <template>
-  <section class="hero is-success is-fullheight" style="background-color: #D8E5F0;">
-
+  <section id="app" class="hero is-success is-fullheight" style="background-color: #D8E5F0;">
     <form>
-
-      <div class="hero-body" >
-
-        <div class="container has-text-centered">
-
-          <div class="columns is-mobile">
-
-            <cardvoto v-for='(resposta, i) in respostas' :key='i' :resposta='resposta'></cardvoto>
-
-          </div>
-
-          <button class="button is-link is-info is- is-medium">Concluir</button>
-
-        </div>
-
-      </div>
-
+        <div class="hero-body" >
+            <div class="container has-text-centered">
+                <div class="columns is-mobile is-multiline ">
+						      <categoria v-for="(resposta,i) in respostas" :key='i' :resposta="resposta"></categoria>
+						    </div>
+                <button class="button is-link is-info is- is-medium">Concluir</button>
+            </div>  
+        </div>                    
     </form>
-
   </section>
 </template>
-<script>
-import cardvoto from '../votos/cardvoto.vue';
-export default {
-  props: ['websocket'],
-  components: {
-    'cardvoto': cardvoto
-  },
-  //name: 'app',
-  data () {
-    return {
-      respostas:''
-    }
-  },
-  created() {
-    //dados mockados
-    this.respostas = [
-      {
-        'categoria':'fruta',
-        'resposta':'banana'
-      },
-      {
-        'categoria':'animal',
-        'resposta':'cahorro'
-      },
-      {
-        'categoria':'animal',
-        'resposta':'cahorro'
-      }
-    ];
 
-    //conexão com a sala
-    /*
-    let promise = this.$http.get('https://raw.githubusercontent.com/felipedacs/super-top/master/data3.json');
-    promise
-    .then(res => res.json())
-    .then(dados => this.dados = dados);
-    */
+
+<script>
+  import categoria from './categoria.vue'
+
+  export default {
+    components: {
+      'categoria': categoria,
+    },
+    name: "app",
+    data() {
+      return {
+        respostas: [
+          {
+            "nome":"cep",
+            "respostas":["respostas1","respostas2", "respostas3", "respostas4"]
+          },
+          {
+            "nome":"minha sogra é",
+            "respostas":["respostas1","respostas2", "respostas3"]
+          }
+			  ]
+      };
+    }
+  };
+
+
+</script>
+
+<style>
+  .column{
+      margin: 6px;
   }
 
-}
-</script>
+  .botoes{
+      margin: 6px;
+  }
+
+  .block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child){
+      margin-bottom: unset;
+  }
+
 </style>
