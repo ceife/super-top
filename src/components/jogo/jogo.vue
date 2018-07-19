@@ -1,9 +1,14 @@
 <template>
-  <div class='container'>
+  <div class='container' v-show='!objetoWS.jogoConcluido'>
+
     <div class="columns is-multiline is-mobile">
 
       <formulario @responde='responde' :categorias='categorias' :indisponivel='indisponivel' :letra='letra' :jsonRespostas='jsonRespostas'>
       </formulario>
+
+      <!-- APAGAR -->
+      <h1>{{objetoWS.jogoConcluido}}</h1>
+      <h1>AQUIIII</h1>
 
       <letraBox :letra='letra'>
       </letraBox>

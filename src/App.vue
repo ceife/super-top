@@ -17,7 +17,8 @@ export default {
         jogadores: ['vazio'],
         letraAtual: 'vazio',
         ultimaLinhaPlanilha: 'vazio',
-        jogadoresAtivos: [{nome:'vazio1',pontos:12},{nome:'vazio2',pontos:15}]
+        jogadoresAtivos: [{nome:'vazio1',pontos:12},{nome:'vazio2',pontos:15}],
+        jogoConcluido: false
       },
       objetoConfiguracoes: {
         funcao: 'vazio',
@@ -27,7 +28,9 @@ export default {
         minJogadores: 'vazio',
         qtdRodadas: 'vazio'
       },
-      resposta: null
+      resposta: null,
+      jogando: false,
+
     }
   },
   methods: {
@@ -35,23 +38,26 @@ export default {
       // 149.56.133.212:8081 jean
       // 172.29.80.15:8080 sala ftec
 
-      this.websocket = new WebSocket('ws://149.56.133.212:8081/StopWeb/websocket?nome=' + nome); // servidor jean
-      // this.websocket = new WebSocket('ws://172.29.80.15:8080/StopWeb/websocket?nome=' + nome); // sala 106
+      // this.websocket = new WebSocket('ws://149.56.133.212:8081/StopWeb/websocket?nome=' + nome); // servidor jean
+      this.websocket = new WebSocket('ws://172.29.80.15:8080/stopProject/websocket?nome=' + nome); // sala 106
       this.escutaWS();
     },
     escutaWS(){
       let rota = this.$router;
       let vm = this;
 
+      //fica escutando todas as respostas do websocket
       this.websocket.onmessage = function(msg){
-        // console.log(msg.data);
-
         let resposta = JSON.parse(msg.data);
 
         console.info(resposta);
 
         if(resposta.funcao == "newRodada"){
-          rota.push({ name: 'jogo'});
+
+        } else if(resposta.funcao == "erro"){
+          if (resposta.valor.codigo === 3) {
+            vm.objetoWS.jogoConcluido = true
+          }
         } else if (resposta.funcao == "getConfiguracoes") {
           vm.criaObjConfig(resposta);
 
@@ -60,10 +66,13 @@ export default {
 
           vm.criaObjWS(resposta);
 
-          // pede as configurações do jogo
-          vm.websocket.send(JSON.stringify({
-            funcao:"getConfiguracoes"
-          }));
+          if (!vm.jogando) {
+            // pede as configurações do jogo
+            vm.websocket.send(JSON.stringify({
+              funcao:"getConfiguracoes"
+            }));
+          }
+          vm.jogando = true
         } else if (resposta.funcao == "getStop") {
           // quando for STOP
         }
@@ -89,10 +98,11 @@ export default {
       this.objetoWS = {
         funcao: vm.tryPropriedade(resposta.funcao),
         emCurso: vm.tryPropriedade(resposta.valor.emCurso),
-        //jogadores: vm.tryPropriedade(resposta.valor.jogadores),
+        jogadores: vm.tryPropriedade(resposta.valor.jogadores),
         letraAtual: vm.tryPropriedade(ultimaRodada.letra),
         //ultimaLinhaPlanilha: vm.tryPropriedade(ultimaRodada.linhaPlanilha[vm.tryPropriedade(ultimaRodada.linhaPlanilha.length, 0)-1]),
         jogadoresAtivos: vm.criaJogadoresAtivos(vm.tryPropriedade(ultimaRodada.linhaPlanilha[vm.tryPropriedade(ultimaRodada.linhaPlanilha.length, 0)-1])),
+        jogoConcluido: false
       }
     },
     tryPropriedade(propriedade, retorno){
